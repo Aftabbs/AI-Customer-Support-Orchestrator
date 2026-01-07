@@ -1,0 +1,59 @@
+# Agent Configuration
+agents:
+  classifier:
+    name: "Ticket Classifier"
+    description: "Categorizes support tickets into Technical, Billing, or General"
+    temperature: 0.2
+
+  technical:
+    name: "Technical Support Agent"
+    description: "Handles technical issues and troubleshooting"
+    temperature: 0.3
+    use_search: true
+
+  billing:
+    name: "Billing Support Agent"
+    description: "Handles billing, payments, and subscription queries"
+    temperature: 0.3
+    use_search: false
+
+  general:
+    name: "General Support Agent"
+    description: "Handles general inquiries and information requests"
+    temperature: 0.4
+    use_search: true
+
+  escalation:
+    name: "Escalation Checker"
+    description: "Determines if human intervention is required"
+    temperature: 0.2
+
+# Guardrails Configuration
+guardrails:
+  max_response_length: 1000
+  min_response_length: 50
+  prohibited_topics:
+    - "medical advice"
+    - "legal advice"
+    - "financial investment advice"
+
+  escalation_triggers:
+    - "angry"
+    - "lawsuit"
+    - "lawyer"
+    - "refund over 1000"
+    - "data breach"
+    - "security incident"
+
+  confidence_threshold: 0.7
+
+# Evaluation Metrics
+evaluation:
+  track_metrics:
+    - "response_time"
+    - "confidence_score"
+    - "escalation_rate"
+    - "category_accuracy"
+    - "guardrail_violations"
+
+  log_interactions: true
